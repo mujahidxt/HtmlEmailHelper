@@ -13,7 +13,7 @@ namespace HtmlEmailHelper
             {
                 ApiKey = "YOUR SENDGRID API KEY",
                 Email = "YOUR FROM EMAIL",
-                Name = "YOUR COMPANY OR PERSONAL EMAIL"
+                Name = "YOUR COMPANY OR PERSONAL NAME"
             };
 
             //Read Email
