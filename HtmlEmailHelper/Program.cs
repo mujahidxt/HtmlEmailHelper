@@ -38,13 +38,16 @@ namespace HtmlEmailHelper
             try
             {
                 //Send Email
-                emailFields.SendEmail(sendGrid);
+                var response= emailFields.SendEmail(sendGrid);
+                Console.WriteLine("Response:");
+                Console.WriteLine(response.StatusCode.ToString());
             }
             catch (Exception ex)
             {
                 //Catch Error
                 Console.WriteLine(ex.Message);
             }
+            Console.ReadKey();
 
         }
     }
