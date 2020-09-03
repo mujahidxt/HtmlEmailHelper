@@ -4,10 +4,25 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>mujahidalimultani</Authors>
+    <Version>1.0.1</Version>
+    <RepositoryType></RepositoryType>
+    <RepositoryUrl>https://github.com/mujahidmultani/HtmlEmailHelper</RepositoryUrl>
+    <Copyright></Copyright>
+    <PackageIcon>responsive-html-email-icon.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageTags>Html, Email, SendGrid</PackageTags>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SendGrid" Version="9.21.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\responsive-html-email-icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
