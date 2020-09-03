@@ -31,10 +31,7 @@ namespace HtmlEmailHelper
             } while (string.IsNullOrWhiteSpace(name));
 
             //Initialize template email
-            var emailFields = new EmailFields("email subject", email);
-            emailFields.Template = EmailTemplate.ExampleTemplate;
-            emailFields.TemplateFields = EmailTemplateFields.ExampleTemplate(name);
-
+            var emailFields = new EmailFields("email subject", email, EmailTemplateFields.ExampleTemplate(name));
             try
             {
                 //Send Email
