@@ -13,7 +13,7 @@ namespace MujahidHtmlEmailHelper
             string htmlDocument = System.IO.File.ReadAllText(fields.Template);
             foreach (var field in fields.Fields)
             {
-                htmlDocument=htmlDocument.Replace($"[{field.Key}]", field.Value);
+                htmlDocument=htmlDocument.Replace(field.Key, field.Value);
             }
             return htmlDocument;
 
