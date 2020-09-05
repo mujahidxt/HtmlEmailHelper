@@ -36,10 +36,10 @@ namespace MujahidHtmlEmailHelper
             message.From = new MailAddress(smtpClientOptions.Email,smtpClientOptions.Name);
             message.To.Add(new MailAddress(emailFields.To));
             message.Subject = emailFields.Subject;
-            message.IsBodyHtml = true; //to make message body as html  
+            message.IsBodyHtml = true; 
             message.Body = emailFields.TemplateFields.TemplateString();
             smtp.Port = smtpClientOptions.Port;
-            smtp.Host = smtpClientOptions.Host; //for gmail host  
+            smtp.Host = smtpClientOptions.Host; 
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
             smtp.Credentials = new NetworkCredential(smtpClientOptions.Email,smtpClientOptions.Password);
