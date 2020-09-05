@@ -2,6 +2,8 @@
 using SendGrid.Helpers.Mail;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 
 namespace MujahidHtmlEmailHelper
@@ -13,7 +15,7 @@ namespace MujahidHtmlEmailHelper
             string htmlDocument = System.IO.File.ReadAllText(fields.Template);
             foreach (var field in fields.Fields)
             {
-                htmlDocument=htmlDocument.Replace(field.Key, field.Value);
+                htmlDocument = htmlDocument.Replace(field.Key, field.Value);
             }
             return htmlDocument;
 
@@ -30,5 +32,23 @@ namespace MujahidHtmlEmailHelper
                 );
             return client.SendEmailAsync(msg).Result;
         }
+        public static void SendEmail(this EmailFields emailFields, SmtpClientOptions smtpClientOptions)
+        {
+            MailMessage message = new MailMessage();
+            SmtpClient smtp = new SmtpClient();
+            message.From = new MailAddress(smtpClientOptions.Email,smtpClientOptions.Name);
+            message.To.Add(new MailAddress(emailFields.To));
+            message.Subject = emailFields.Subject;
+            message.IsBodyHtml = true; //to make message body as html  
+            message.Body = emailFields.TemplateFields.TemplateString();
+            smtp.Port = smtpClientOptions.Port;
+            smtp.Host = smtpClientOptions.Host; //for gmail host  
+            smtp.EnableSsl = true;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(smtpClientOptions.Email,smtpClientOptions.Password);
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.Send(message);
+        }
+
     }
 }
