@@ -4,7 +4,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>mujahidalimultani</Authors>
-    <Version>1.0.3</Version>
+    <Version>1.0.5</Version>
     <RepositoryType></RepositoryType>
     <RepositoryUrl>https://github.com/mujahidmultani/HtmlEmailHelper</RepositoryUrl>
     <Copyright></Copyright>
@@ -12,6 +12,7 @@
     <PackageIconUrl />
     <PackageTags>Html, Email, SendGrid</PackageTags>
     <NeutralLanguage>en</NeutralLanguage>
+    <Description>Send HTML email by reading and formating content from the file or from string.</Description>
   </PropertyGroup>
 
   <ItemGroup>

@@ -9,12 +9,15 @@ namespace MujahidHtmlEmailHelper
     {
         public static string TemplateString(this IEmailTemplateFields fields)
         {
-            string htmlDocument = System.IO.File.ReadAllText(fields.Template);
-            foreach (var field in fields.Fields)
+            string htmlString = fields.TemplateType == TemplateType.HtmlString ? fields.Template : System.IO.File.ReadAllText(fields.Template);
+            if (fields.Fields != null)
             {
-                htmlDocument = htmlDocument.Replace(field.Key, field.Value);
+                foreach (var field in fields.Fields)
+                {
+                    htmlString = htmlString.Replace(field.Key, field.Value);
+                }
             }
-            return htmlDocument;
+            return htmlString;
 
         }
         public static Response SendEmail(this EmailFields emailFields, SendGridOptions sendGridOptions)
@@ -33,16 +36,16 @@ namespace MujahidHtmlEmailHelper
         {
             MailMessage message = new MailMessage();
             SmtpClient smtp = new SmtpClient();
-            message.From = new MailAddress(smtpClientOptions.Email,smtpClientOptions.Name);
+            message.From = new MailAddress(smtpClientOptions.Email, smtpClientOptions.Name);
             message.To.Add(new MailAddress(emailFields.To));
             message.Subject = emailFields.Subject;
-            message.IsBodyHtml = true; //to make message body as html  
+            message.IsBodyHtml = true;
             message.Body = emailFields.TemplateFields.TemplateString();
             smtp.Port = smtpClientOptions.Port;
-            smtp.Host = smtpClientOptions.Host; //for gmail host  
+            smtp.Host = smtpClientOptions.Host;
             smtp.EnableSsl = true;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(smtpClientOptions.Email,smtpClientOptions.Password);
+            smtp.Credentials = new NetworkCredential(smtpClientOptions.Email, smtpClientOptions.Password);
             smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
             smtp.Send(message);
         }
